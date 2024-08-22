@@ -24,6 +24,8 @@ Traces, evals, prompt management and metrics to debug and improve your LLM appli
 
 - <strong> Kong Community 3.7.1 </strong>
 
+<h3> Setup Up Kong Locally Follow the <a href="https://github.com/raj713335/kong-gateway">GitHub Repository </a> </h3>
+
 # 1. Plugin Architecture
 
 <p align="center">
