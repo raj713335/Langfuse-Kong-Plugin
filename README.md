@@ -15,7 +15,9 @@ Traces, evals, prompt management and metrics to debug and improve your LLM appli
 
 - <strong> Integrations:</strong> Langfuse often supports integrations with other tools and platforms commonly used in the development and deployment of LLMs, making it easier to incorporate into existing workflows.
 
-
+<p align="center">
+  <img src="data/Langfuse.png" />
+</p> 
 
 ### SOLUTION
 
