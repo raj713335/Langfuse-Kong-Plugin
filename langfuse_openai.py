@@ -1,11 +1,8 @@
 import os
 from typing import List
-from langfuse.decorators import observe
 from langfuse.openai import openai  # OpenAI integration
 from dotenv import load_dotenv
 
-from llama_index.core import global_handler
-from llama_index.core.callbacks import CallbackManager
 from llama_index.core import set_global_handler
 import uvicorn
 
