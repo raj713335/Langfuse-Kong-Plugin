@@ -3,6 +3,8 @@
 <strong> Langfuse </strong> is an Open Source LLM Engineering Platform to log
 Traces, evals, prompt management, and metrics to debug and improve your LLM application.
 
+<h4>Read Langfuse <a href="https://langfuse.com/docs">documentation.</a></h4>
+
 
 ## Key Features of Langfuse:
 - <strong> Logging and Tracing: </strong> Langfuse captures detailed logs of interactions with LLMs, allowing developers to trace the exact steps taken during a conversation or process. This helps identify where things might have gone wrong or improvements can be made.
@@ -94,7 +96,7 @@ LANGFUSE_HOST="http://localhost:3000"
 
 ### Install Kong Pdk and Python Packages 
 ```
-$ apk update && apk add python3 py3-pip python3-dev musl-dev libffi-dev gcc g++ file make && PYTHONWARNINGS=ignore pip3 install kong-pdk
+$ apt-get update && apt-get add python3 py3-pip python3-dev musl-dev libffi-dev gcc g++ file make && PYTHONWARNINGS=ignore pip3 install kong-pdk
 $ pip install -r requirements.txt
 ```
 

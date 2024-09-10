@@ -1,7 +1,9 @@
 kong-pdk==0.36
 langfuse==2.44.0
 openai==1.42.0
-llama-index==0.10.68
+uvicorn==0.30.6
+fastapi==0.114.0
+llama-index==0.11.0
 llama-index-callbacks-langfuse==0.2.0
 python-dotenv==1.0.1
 ipython==8.26.0

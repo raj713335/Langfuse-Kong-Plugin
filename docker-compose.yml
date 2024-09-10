@@ -1,4 +1,38 @@
 services:
+  kong:
+    image: kong:3.7.1
+    volumes:
+      - ./kong.yml:/usr/local/kong/declarative/kong.yml
+      - ./Langfuse-Kong-Plugin:/usr/local/bin/Langfuse-Kong-Plugin
+    environment:
+      - KONG_DATABASE=off
+      - KONG_DECLARATIVE_CONFIG=/usr/local/kong/declarative/kong.yml
+#      - KONG_PLUGINS=bundled,my_plugin
+#      - KONG_PLUGINSERVER_NAMES=python
+#      - KONG_PLUGINSERVER_PYTHON_SOCKET=/usr/local/kong/python_pluginserver.sock
+#      - KONG_PLUGINSERVER_PYTHON_START_CMD=/opt/kong-python-pdk/kong-pluginserver --no-lua-style --plugins-directory <PATH_OF_PLUGIN_FOLDER> -v
+#      - KONG_PLUGINSERVER_PYTHON_QUERY_CMD_CMD=/opt/kong-python-pdk/kong-pluginserver --no-lua-style --plugins-directory <PATH_OF_PLUGIN_FOLDER> --dump-all-plugins
+      - KONG_LOG_LEVEL=info
+      - KONG_PROXY_LISTEN=0.0.0.0:8000, 0.0.0.0:8443 ssl
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001
+      - KONG_ADMIN_GUI_LISTEN=0.0.0.0:8002
+      - KONG_PROXY_ACCESS_LOG=/dev/stdout
+      - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+      - KONG_PROXY_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_LISTEN=0.0.0.0:8001, 0.0.0.0:8444 ssl
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "127.0.0.1:8001:8001"
+      - "127.0.0.1:8444:8444"
+      - "127.0.0.1:8002:8002/tcp"
+    healthcheck:
+      test: [ "CMD", "kong", "health" ]
+      interval: 1s
+      timeout: 10s
+      retries: 3
+
   langfuse-server:
     image: langfuse/langfuse:latest
     depends_on:
@@ -9,9 +43,9 @@ services:
     env_file:
       - .env
     environment:
-      - DATABASE_PORT=${DATABASE_PORT:-5432}
-      - DATABASE_USERNAME=${DATABASE_USERNAME:-root}
-      - DATABASE_PASSWORD=${DATABASE_PASSWORD:-root}
+      - DATABASE_PORT=${DATABASE_PORT:-5433}
+      - DATABASE_USERNAME=${DATABASE_USERNAME:-postgres}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD:-postgres}
       - DATABASE_NAME=${DATABASE_NAME:-langfuse}
       - DATABASE_HOST=${DATABASE_HOST:-db}
       - NEXTAUTH_SECRET=${NEXTAUTH_SECRET:-secret}
@@ -33,7 +67,7 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_DB=postgres
     ports:
-      - 5432:5432
+      - 5433:5433
     volumes:
       - database_data:/var/lib/postgresql/data
 

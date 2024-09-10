@@ -1,0 +1,11 @@
+_format_version: "2.1"
+
+services:
+  - name: FastAPI-service
+    url: http://host.docker.internal:5000/llm_response
+    routes:
+      - name: FastAPI-route
+        paths:
+          - /kong/llm_response
+#    plugins:
+#      - name: Langfuse-Kong-Plugin
