@@ -17,3 +17,14 @@ RUN pip install -r /usr/local/kong/python_plugin/requirements.txt
 
 COPY --chown=kong --chmod=777 pluginserver.py /usr/local/bin/kong-python-pluginserver
 COPY --chown=kong --chmod=777 ./Langfuse-Kong-Plugin /usr/local/share/lua/5.1/kong/plugins/
+
+# Install Python Plugin dependency
+RUN PYTHONWARNINGS=ignore pip3 install kong-pdk==0.31
+
+# Initialize Kong
+USER kong
+ENTRYPOINT ["/docker-entrypoint.sh"]
+EXPOSE 8000 8002 8443 8001 8444
+STOPSIGNAL SIGQUIT
+HEALTHCHECK --interval=10s --timeout=10s --retries=10 CMD kong health
+CMD ["kong", "docker-start"]

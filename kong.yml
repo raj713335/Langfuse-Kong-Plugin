@@ -7,5 +7,11 @@ services:
       - name: FastAPI-route
         paths:
           - /kong/llm_response
-#    plugins:
-#      - name: Langfuse-Kong-Plugin
+    plugins:
+      - name: Langfuse-Kong-Plugin
+        config:
+          OPENAI_API_KEY: ABC
+          OPENAI_API_MODEL: ABC
+          LANGFUSE_SECRET_KEY: ABC
+          LANGFUSE_PUBLIC_KEY: ABC
+          LANGFUSE_HOST: ABC
