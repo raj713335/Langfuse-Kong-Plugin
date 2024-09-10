@@ -21,7 +21,7 @@ Traces, evals, prompt management, and metrics to debug and improve your LLM appl
 
 ## 1. Sequence Diagram 
 
-- Integrate LLM Observatory tools - LangSmith, Langfuse
+<h4 align="center">Langfuse Kong Plugin Flow to add Logs of the GenAI LLM usage directly from Gateway to monitor usage and cost.</h4>
 
 ``` mermaid
 sequenceDiagram
