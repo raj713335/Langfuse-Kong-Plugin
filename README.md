@@ -1,11 +1,11 @@
 <h1 align="center">Langfuse-Kong-Plugin</h1>
 
-<strong> Langfuse </strong> is a Open Source LLM Engineering Platform to log
-Traces, evals, prompt management and metrics to debug and improve your LLM application.
+<strong> Langfuse </strong> is an Open Source LLM Engineering Platform to log
+Traces, evals, prompt management, and metrics to debug and improve your LLM application.
 
 
 ## Key Features of Langfuse:
-- <strong> Logging and Tracing: </strong> Langfuse captures detailed logs of interactions with LLMs, allowing developers to trace the exact steps taken during a conversation or process. This helps in identifying where things might have gone wrong or where improvements can be made.
+- <strong> Logging and Tracing: </strong> Langfuse captures detailed logs of interactions with LLMs, allowing developers to trace the exact steps taken during a conversation or process. This helps identify where things might have gone wrong or improvements can be made.
 
 - <strong> Visualization:</strong> The tool provides visual representations of data flows, decision trees, and other critical aspects of the LLM's operations. This can be particularly useful in complex applications where understanding the flow of information is crucial.
 
@@ -18,6 +18,31 @@ Traces, evals, prompt management and metrics to debug and improve your LLM appli
 <p align="center">
   <img src="data/Langfuse.png" />
 </p> 
+
+## Sequence Diagram 
+
+- Integrate LLM Observatory tools - LangSmith, Langfuse
+
+
+``` mermaid
+sequenceDiagram
+
+    Title: PKCE Flow for System-to-System Integration with Keycloak
+    
+    participant ClientSystem
+    participant Keycloak
+    participant PlatformAPI
+
+    ClientSystem->>ClientSystem: Generate code_verifier and code_challenge
+    ClientSystem->>Keycloak: Authorization Request (client_id, response_type=code, code_challenge, code_challenge_method=S256, redirect_uri)
+    Note right of Keycloak: Validate request and authenticate
+    Keycloak-->>ClientSystem: Authorization Code (redirect_uri)
+    ClientSystem->>Keycloak: Token Request (authorization_code, code_verifier, client_id)
+    Note right of Keycloak: Validate code_verifier with code_challenge
+    Keycloak-->>ClientSystem: Access Token, ID Token
+    ClientSystem->>PlatformAPI: API Request (Authorization: Bearer <access_token>)
+    PlatformAPI-->>ClientSystem: API Response
+```
 
 ### SOLUTION
 
