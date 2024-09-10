@@ -1,4 +1,4 @@
-<h1 align="center">Langfuse-Kong-Plugin</h1>
+<h1 align="center"><a href="https://www.youtube.com/watch?v=SCgy9dYVPI4">Langfuse-Kong-Plugin</a></a></h1>
 
 <strong> Langfuse </strong> is an Open Source LLM Engineering Platform to log
 Traces, evals, prompt management, and metrics to debug and improve your LLM application.
@@ -187,7 +187,12 @@ LANGFUSE_HOST is the Langfuse Host Url.
 
 
 
-## 6. Application Screenshots / <a href="">Demo.</a>
+## 6. Application Screenshots / <a href="https://www.youtube.com/watch?v=SCgy9dYVPI4">Demo.</a>
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=SCgy9dYVPI4"><img src="data/Kong_Response.png" /></a>
+</p> 
+
 
 
 
