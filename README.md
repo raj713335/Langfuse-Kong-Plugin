@@ -19,7 +19,7 @@ Traces, evals, prompt management, and metrics to debug and improve your LLM appl
   <img src="data/Langfuse.png" />
 </p> 
 
-## 1. Sequence Diagram 
+# 1. Sequence Diagram 
 
 <h4 align="center">Langfuse Kong Plugin Flow to add Logs of the GenAI LLM usage directly from Gateway to monitor usage and cost.</h4>
 
@@ -191,4 +191,4 @@ LANGFUSE_HOST is the Langfuse Host Url.
 
 
 ## Contributors
-Design & Developed By : raj713335@gmail.com
+Design & Developed By: raj713335@gmail.com
