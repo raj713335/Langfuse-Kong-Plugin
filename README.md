@@ -19,32 +19,39 @@ Traces, evals, prompt management, and metrics to debug and improve your LLM appl
   <img src="data/Langfuse.png" />
 </p> 
 
-## Sequence Diagram 
+## 1. Sequence Diagram 
 
 - Integrate LLM Observatory tools - LangSmith, Langfuse
-
 
 ``` mermaid
 sequenceDiagram
 
-    Title: PKCE Flow for System-to-System Integration with Keycloak
+    Title: Langfuse Kong Plugin Flow to add Logs of the GenAI LLM usage directly from Gateway to monitor usage and cost.  
     
-    participant ClientSystem
-    participant Keycloak
-    participant PlatformAPI
+    participant Client API
+    participant Kong API Gateway
+    participant Langfuse-Kong-Plugin
+    participant LLM Endpoint
+    participant Langfuse Dashboard
+    
+    Client API->>Kong API Gateway: API call redirected to Kong API Gateway 
+    
+    Kong API Gateway->>Langfuse-Kong-Plugin: API gateway intercepts the call and trigger the plugin  
+    
+    
+    Langfuse-Kong-Plugin->>LLM Endpoint: Plugin redirects the call to the configured LLM Provider and fetches the generated response
+    
+    Note right of Langfuse-Kong-Plugin: Can be configured to use any LLM Provider
 
-    ClientSystem->>ClientSystem: Generate code_verifier and code_challenge
-    ClientSystem->>Keycloak: Authorization Request (client_id, response_type=code, code_challenge, code_challenge_method=S256, redirect_uri)
-    Note right of Keycloak: Validate request and authenticate
-    Keycloak-->>ClientSystem: Authorization Code (redirect_uri)
-    ClientSystem->>Keycloak: Token Request (authorization_code, code_verifier, client_id)
-    Note right of Keycloak: Validate code_verifier with code_challenge
-    Keycloak-->>ClientSystem: Access Token, ID Token
-    ClientSystem->>PlatformAPI: API Request (Authorization: Bearer <access_token>)
-    PlatformAPI-->>ClientSystem: API Response
+    
+    LLM Endpoint-->>Langfuse-Kong-Plugin: LLM provider sends the generated response
+    
+    Langfuse-Kong-Plugin->>Langfuse Dashboard: Plugin add the log traces to the Langfuse Dashboard
+    
+    Langfuse-Kong-Plugin-->>Kong API Gateway: Plugin sends the generated response
+    
+    Kong API Gateway-->>Client API: API Gateway sends the generated response
 ```
-
-### SOLUTION
 
 
 ### Tested in Kong Release
@@ -52,12 +59,6 @@ sequenceDiagram
 - <strong> Kong Community 3.7.1 </strong>
 
 <h3> Setup Up Kong Locally Follow the <a href="https://github.com/raj713335/kong-gateway">GitHub Repository </a> </h3>
-
-# 1. Plugin Architecture
-
-<p align="center">
-  <img src="" />
-</p> 
 
 
 # 2. Getting Started With the Langfuse Application (Self-host docker)
